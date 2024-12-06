@@ -1,0 +1,11 @@
+{
+  "_optional_key": "optional",
+  "project": null,
+  "package": "{{ cookiecutter.project.lower().replace(' ', '_').replace('-', '_') }}",
+  "description": "",
+  "python": 3.8,
+  "mccabe": 10,
+  "author": "{{ cookiecutter._optional_key }}",
+  "email": "{{ cookiecutter._optional_key }}",
+  "license": ["MIT", "BSD-3-Clause", "Apache-2.0", "GPL-3.0-only"]
+}

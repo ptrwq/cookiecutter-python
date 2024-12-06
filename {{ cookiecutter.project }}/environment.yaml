@@ -1,0 +1,9 @@
+name: {{ cookiecutter.package }}
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python={{ cookiecutter.python }}
+  - pip
+  - pip:
+    - -e ".[dev, test]"

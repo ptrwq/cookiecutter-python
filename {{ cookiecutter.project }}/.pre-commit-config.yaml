@@ -1,0 +1,60 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      # fixing config files
+      - id: requirements-txt-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: pretty-format-json
+        args: [ --autofix,--indent=2,--no-ensure-ascii,--no-sort-keys ]
+      # fixing source files
+      - id: fix-encoding-pragma
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: debug-statements
+      # git helper
+      - id: check-merge-conflict
+      # credential checker
+      - id: detect-private-key
+      - id: detect-aws-credentials
+        args: [ --allow-missing-credentials ]
+      - id: detect-private-key
+
+  # dockerfile linter
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.0
+    hooks:
+      - id: hadolint-docker
+        args: [ --failure-threshold=error ]
+
+  # notebook strip output
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.8.1
+    hooks:
+      - id: nbstripout
+
+  # python linter & formatter
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.8.1
+    hooks:
+      - id: ruff # linter
+        args: [ --fix ]
+      - id: ruff-format # formatter
+
+  # python formatter | enforce opinionated code style that ruff does not support
+  - repo: https://github.com/psf/black
+    rev: 22.12.0
+    hooks:
+      - id: black
+
+  # # python static analysis
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        types: [ python ]
+        args: [ -rn, -sn ]
