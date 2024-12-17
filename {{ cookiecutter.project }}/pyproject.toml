@@ -50,6 +50,9 @@ source = ["src"]
 
 # python linter & formatter
 [tool.ruff]
+line-length = {{ cookiecutter.linelength }}
+
+[tool.ruff.lint]
 select = [
     "F",   # Pyflakes: general linting
     "E",   # PEP 8: style guide enforcement
@@ -62,16 +65,12 @@ select = [
 
 ignore = [
     "E203",  # whitespace before ':' (back compatibility)
-    "W503",  # line break before binary operator (black compatibility)
 ]
-
-line-length = {{ cookiecutter.linelength }}
-max-complexity = {{ cookiecutter.mccabe }}
 
 # python formatter | enforce opinionated code style that ruff does not support
 [tool.black]
 line-length = {{ cookiecutter.linelength }}
-target-version = [{{ cookiecutter.python }}]
+target-version = ["py{{ cookiecutter.python.replace('.', '') }}"]
 
 # python static analysis
 [tool.pylint]
